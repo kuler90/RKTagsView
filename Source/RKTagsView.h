@@ -21,6 +21,7 @@ typedef NS_ENUM(NSInteger, RKTagsViewTextFieldAlign) { // align is relative to a
 - (BOOL)tagsView:(RKTagsView *)tagsView shouldSelectTagAtIndex:(NSInteger)index; // called when tag pressed. return NO to disallow selecting tag
 - (BOOL)tagsView:(RKTagsView *)tagsView shouldDeselectTagAtIndex:(NSInteger)index; // called when selected tag pressed. return NO to disallow deselecting tag
 - (BOOL)tagsView:(RKTagsView *)tagsView shouldRemoveTagAtIndex:(NSInteger)index; // called when 'backspace' key pressed. return NO to disallow removing tag
+- (void)tagsView:(RKTagsView *)tagsView shouldClickTagAtIndex:(NSInteger)index; // called when need to handle tap on tag
 
 - (void)tagsViewDidChange:(RKTagsView *)tagsView; // called when tag was added or removed by user
 - (void)tagsViewContentSizeDidChange:(RKTagsView *)tagsView;
@@ -39,6 +40,7 @@ typedef NS_ENUM(NSInteger, RKTagsViewTextFieldAlign) { // align is relative to a
 @property (nonatomic, strong) UIFont *font; // default is font from textfield
 @property (nonatomic) BOOL editable; // default is YES
 @property (nonatomic) BOOL selectable; // default is YES
+@property (nonatomic) BOOL clickable; // default is NO
 @property (nonatomic) BOOL allowsMultipleSelection; // default is YES
 @property (nonatomic) BOOL selectBeforeRemoveOnDeleteBackward; // default is YES
 @property (nonatomic) BOOL deselectAllOnEdit; // default is YES
