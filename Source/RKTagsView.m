@@ -81,6 +81,7 @@ const CGFloat RKTagsViewAutomaticDimension = -0.0001;
   //
   _editable = YES;
   _selectable = YES;
+  _clickable = NO;
   _allowsMultipleSelection = YES;
   _selectBeforeRemoveOnDeleteBackward = YES;
   _deselectAllOnEdit = YES;
@@ -536,6 +537,12 @@ const CGFloat RKTagsViewAutomaticDimension = -0.0001;
 }
 
 - (void)tagButtonTapped:(UIButton *)button {
+  if (self.clickable) {
+    int buttonIndex = (int)[self.mutableTagButtons indexOfObject:button];
+    if ([self.delegate respondsToSelector:@selector(tagsView:shouldClickTagAtIndex:)]) {
+      [self.delegate tagsView:self shouldClickTagAtIndex:buttonIndex];
+    }
+  }
   if (self.selectable) {
     int buttonIndex = (int)[self.mutableTagButtons indexOfObject:button];
     if (button.selected) {
